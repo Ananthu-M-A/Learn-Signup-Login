@@ -1,0 +1,41 @@
+<%-include('partials/header.ejs')%>
+        <div class="row">
+            <div class="col">
+                <a href="/" class="btn btn-light fw-bold mt-2 float-end">LOGIN</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mt-4">
+            <form method="POST" action="/signup" class="text-center text-light">
+                <div class="mb-3">
+                    <label for="name" class="form-label">NAME</label>
+                    <input type="text" id="name" name="name" class="form-control bg-transparent" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">EMAIL</label>
+                    <input type="email" class="form-control bg-transparent" id="email" name="email" aria-describedby="emailHelp" required>
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">USERNAME</label>
+                    <input type="text" id="username" name="username" class="form-control bg-transparent" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">PASSWORD</label>
+                    <input type="password" id="password" name="password" class="form-control bg-transparent" required>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-outline-primary w-100" type="submit">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%-include('partials/footer.ejs')%>

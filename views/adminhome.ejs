@@ -1,0 +1,55 @@
+<%-include('partials/header.ejs')%>
+        <div class="row">
+            <div class="col">
+                <a href="/" class="btn btn-light fw-bold mt-2 float-end">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class="text-center text-secondary mt-4">ADMIN PRIVILEGES</h3>
+            <!-- Your Admin privileges content here -->
+        </div>
+        <div class="col-md-6">
+            <h3 class="text-center text-secondary mt-4">STUDENT-LOGIN DETAILS</h3>
+            <!-- Your Student login details content here -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mt-4 text-center">
+            <button class="btn btn-outline-dark text-light w-100 p-3" type="submit">CREATE</button>
+            <button class="btn btn-outline-dark text-light w-100 p-3" type="submit">EDIT</button>
+            <button class="btn btn-outline-dark text-light w-100 p-3" type="submit">UPDATE</button>
+            <button class="btn btn-outline-dark text-light w-100 p-3" type="submit">DELETE</button>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-dark table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">USERNAME</th>
+                    <th scope="col">NAME</th>
+                    <th scope="col">EMAIL</th>
+                    <th scope="col">PASSWORD</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tbody>
+                        <% users.forEach((user, index) => { %>
+                          <tr>
+                            <th scope="row"><%= index + 1 %></th>
+                            <td><%= user.username %></td>
+                            <td><%= user.name %></td>
+                            <td><%= user.email %></td>
+                            <!-- Other user data columns -->
+                          </tr>
+                        <% }); %>
+                      </tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<%-include('partials/footer.ejs')%>
