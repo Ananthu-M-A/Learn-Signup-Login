@@ -108,24 +108,26 @@ app.post('/logout', (req, res) => {
 });
 
 app.post('/', async (req, res) => {
+    
   const { username, password, flexRadioDefault } = req.body;
-
   try {
-    const user = await User.findOne({ username });
 
-    if (!user) {
-      return res.render('login', { error: 'Incorrect username or password.' });
-    }
+    if ((username === 'admin') && (flexRadioDefault === 'admin') && (password === 'pswd')) {
+        req.session.user = { username, role: 'admin' };
+        return res.redirect('/admin'); 
+      }
+      const user = await User.findOne({ username });
+        if (!user) {
+            return res.render('login', { error: 'Incorrect username or password.' });
+          }      
+          const passwordMatches = await bcrypt.compare(password, user.password);
+        if (passwordMatches && (user.username === username) && (flexRadioDefault==='student')) {
+        req.session.user = { username, role: 'student' };
+        return res.redirect('/home');  
+      } else {
+            return res.render('login', { error: 'Incorrect username or password.' });
+            }
 
-    const passwordMatches = await bcrypt.compare(password, user.password);
-
-    if (!passwordMatches) {
-      return res.render('login', { error: 'Incorrect username or password.' });
-    }
-
-    req.session.user = { username, role: flexRadioDefault }; // Store user role in session
-    res.cookie("username",username)
-    res.redirect('/home');
   } catch (error) {
     res.render('login', { error: 'An error occurred during login.' });
   }
