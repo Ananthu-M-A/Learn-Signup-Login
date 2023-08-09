@@ -1,6 +1,8 @@
 <form action="/admin/search" method="get" class="text-center">
-    <input type="text" id="searchInput" placeholder="Search by username" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    <button class="btn btn-outline-dark fw-bold text-light w-10 mt-2" value="btn4" id="btn_search" type="submit">SEARCH</button>
+    <input type="text" id="searchInput" placeholder="Search by username" class="form-control"
+        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    <button class="btn btn-outline-dark fw-bold text-light w-10 mt-2" value="btn4" id="btn_search"
+        type="submit">SEARCH</button>
 </form>
 <br>
 <script>
@@ -12,15 +14,12 @@
             event.preventDefault(); // Prevent the default form submission
 
             const query = searchInput.value.trim();
-            if (query !== '')
-            {
+            if (query !== '') {
                 window.location.href = "/admin/search/" + encodeURIComponent(query);
             }
-            else
-            {
+            else {
                 window.location.href = "/admin";
             }
         });
     });
 </script>
-

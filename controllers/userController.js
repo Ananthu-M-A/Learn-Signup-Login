@@ -5,7 +5,7 @@ const insertStudent = async (req, res) => {
   try {
     const { name, email, username, password } = req.body;
 
-    const hashedPassword = await bcrypt.hash(password,10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
       firstname: name,

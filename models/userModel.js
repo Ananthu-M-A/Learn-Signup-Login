@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 // DEFINES USER SCHEMA FOR THE USER MODEL
-const user= mongoose.Schema({
+const user = mongoose.Schema({
   firstname: {
     type: String,
     required: true,
