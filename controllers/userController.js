@@ -8,17 +8,19 @@ const insertStudent = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password,10);
 
     const user = new User({
-      name: name,
+      firstname: name,
       email: email,
       username: username,
       password: hashedPassword,
+      admin: false
     });
 
     const result = await user.save();
+    res.redirect('/admin');
 
-    res.redirect('/');
   } catch (error) {
-    res.render('signup', { error: 'Invalid input data.' });
+    res.redirect('/')
+    console.log(error.message);
   }
 };
 

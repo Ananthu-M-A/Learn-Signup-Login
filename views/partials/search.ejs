@@ -1,0 +1,26 @@
+<form action="/admin/search" method="get" class="text-center">
+    <input type="text" id="searchInput" placeholder="Search by username" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    <button class="btn btn-outline-dark fw-bold text-light w-10 mt-2" value="btn4" id="btn_search" type="submit">SEARCH</button>
+</form>
+<br>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const btnSearch = document.getElementById('btn_search');
+        const searchInput = document.getElementById('searchInput');
+
+        btnSearch.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const query = searchInput.value.trim();
+            if (query !== '')
+            {
+                window.location.href = "/admin/search/" + encodeURIComponent(query);
+            }
+            else
+            {
+                window.location.href = "/admin";
+            }
+        });
+    });
+</script>
+

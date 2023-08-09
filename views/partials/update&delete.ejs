@@ -1,0 +1,108 @@
+<table class="table table-dark table-striped text-center">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">USERNAME</th>
+            <th scope="col">NAME</th>
+            <th scope="col">EMAIL</th>
+            <th>ACTIONS</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tbody>
+        <% let num=0; %>
+            <% users.forEach(user=> { %>
+                <% num++; %>
+                    <tr>
+                        <td>
+                            <%= num %>
+                                <input type="hidden" name="id" value="<%=user._id%>">
+                        </td>
+                        <td>
+                            <%= user.username %>
+                        </td>
+                        <td>
+                            <input id="<%= user.firstname %>" type="text" name="name" value="<%= user.firstname %>">
+
+                        </td>
+                        <td>
+                            <input id="<%= user.email %>" type="text" name="email" value="<%= user.email %>">
+                        </td>
+                        <td>
+                            <button id="<%= user._id %>" class="btn btn-light w-10" value="<%= user %>"
+                                onclick="editUser('<%= user.firstname %>','<%= user.email %>','<%= user._id %>')">
+                                <img src="/images/update.png" alt="Update" class="btn-icon">
+                            </button>
+                            <button class="btn btn-light w-10" data-username="<%= user.username %>"
+                                onclick="deleteUser(this)">
+                                <img src="/images/delete.png" alt="Delete" class="btn-icon">
+                            </button>
+                        </td>
+                    </tr>
+                    <% }); %>
+    </tbody>
+    </tbody>
+</table>
+
+<script>
+    async function deleteUser(button) {
+        const username = button.dataset.username;
+        if (confirm(`Are you sure you want to delete ${username}?`)) {
+            try {
+                const response = await fetch(`/deleteUser/${username}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    // The request was successful
+                    const rowToRemove = button.closest('tr');
+                    if (rowToRemove) {
+                        rowToRemove.remove();
+                    } else {
+                        alert('User deleted, but failed to update UI.');
+                    }
+                } else {
+                    // The request was not successful
+                    const errorMessage = await response.text();
+                    alert(`Failed to delete user: ${errorMessage}`);
+                }
+            } catch (error) {
+                // An error occurred while making the request
+                console.error('Error deleting user:', error);
+                alert('An error occurred while deleting the user.');
+            }
+        }
+    }
+
+    async function editUser(name, email, id) {
+    let editFirstName = document.getElementById(name).value;
+    let editEmail = document.getElementById(email).value;
+    const editData = {
+        id: id,
+        firstname: editFirstName,
+        email: editEmail,
+    };
+    
+    if (confirm(`Are you sure you want to update?`)) {
+        try {
+            const response = await fetch(`/editUser`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(editData),
+            });
+
+            if (response.ok) {
+                // Successful response
+                window.location.reload();
+            } else {
+                // Handle non-successful response
+                alert('An error occurred while updating the user.');
+            }
+        } catch (error) {
+            // An error occurred while making the request
+            console.error('Error updating user:', error);
+            alert('An error occurred while updating the user.');
+        }
+    }
+}
+</script>

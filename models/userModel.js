@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 // DEFINES USER SCHEMA FOR THE USER MODEL
 const user= mongoose.Schema({
-  name: {
+  firstname: {
     type: String,
     required: true,
   },
@@ -19,6 +19,10 @@ const user= mongoose.Schema({
   },
   password: {
     type: String,
+    required: true,
+  },
+  admin: {
+    type: Boolean,
     required: true,
   }
 });
