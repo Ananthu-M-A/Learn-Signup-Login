@@ -147,11 +147,6 @@ app.delete('/deleteUser/:username', async (req, res) => {
   }
 });
 
-
-
-
-
-
 app.put('/toggleAdmin', async (req, res) => {
   try {
     let result;
@@ -171,13 +166,6 @@ app.put('/toggleAdmin', async (req, res) => {
     res.status(500).json({ message: 'Error toggling user admin status', error: error.message });
   }
 });
-
-
-
-
-
-
-
 
 app.put('/editUser', async (req, res) => {
   try {
@@ -199,4 +187,3 @@ app.put('/editUser', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server launched on port ${PORT}`);
 });
-
