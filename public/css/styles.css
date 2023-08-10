@@ -1,0 +1,11 @@
+
+        .background-image {
+            background-image: url('/images/learntocode.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+        }

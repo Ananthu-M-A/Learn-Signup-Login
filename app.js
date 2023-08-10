@@ -155,15 +155,13 @@ app.delete('/deleteUser/:username', async (req, res) => {
 app.put('/toggleAdmin', async (req, res) => {
   try {
     let result;
-    const toggleDefault = await User.findOne( {_id:req.body.id },{admin:1,_id:0})
-   if(toggleDefault.admin === true)
-   {
-      result = await User.findByIdAndUpdate(req.body.id, {admin : false} );
-   }
-   else
-   {
-     result = await User.findByIdAndUpdate(req.body.id, {admin : true} );
-   }
+    const toggleDefault = await User.findOne({ _id: req.body.id }, { admin: 1, _id: 0 })
+    if (toggleDefault.admin === true) {
+      result = await User.findByIdAndUpdate(req.body.id, { admin: false });
+    }
+    else {
+      result = await User.findByIdAndUpdate(req.body.id, { admin: true });
+    }
 
     if (result.nModified === 0) {
       return res.status(404).json({ message: 'User not found' });
@@ -182,7 +180,7 @@ app.put('/toggleAdmin', async (req, res) => {
 
 
 app.put('/editUser', async (req, res) => {
-  try { 
+  try {
     const updateUser = {
       firstname: req.body.firstname,
       email: req.body.email,

@@ -5,21 +5,3 @@
         type="submit">SEARCH</button>
 </form>
 <br>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const btnSearch = document.getElementById('btn_search');
-        const searchInput = document.getElementById('searchInput');
-
-        btnSearch.addEventListener('click', function (event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            const query = searchInput.value.trim();
-            if (query !== '') {
-                window.location.href = "/admin/search/" + encodeURIComponent(query);
-            }
-            else {
-                window.location.href = "/admin";
-            }
-        });
-    });
-</script>

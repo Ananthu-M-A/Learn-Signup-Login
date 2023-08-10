@@ -44,30 +44,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    <script>
-        const btnCreate = document.getElementById('btn_create');
-        const btnUpdateDelete = document.getElementById('btn_update_delete');
-        const btnAdminHome = document.getElementById('btn_admin_home');
-        const createSection = document.getElementById('createSection');
-        const updateDeleteSection = document.getElementById('updateDeleteSection');
-        const defaultTableSection = document.getElementById('defaultTableSection');
-    
-        btnCreate.addEventListener('click', () => {
-            createSection.style.display = 'block';
-            updateDeleteSection.style.display = 'none';
-            defaultTableSection.style.display = 'none';
-        });
-    
-        btnUpdateDelete.addEventListener('click', () => {
-            createSection.style.display = 'none';
-            updateDeleteSection.style.display = 'block';
-            defaultTableSection.style.display = 'none'; 
-        });
-
-        btnAdminHome.addEventListener('click', () => {
-            window.location.href = "/admin";
-        });
-
-    </script>    
+    </div>  
     <%-include('partials/footer.ejs')%>
